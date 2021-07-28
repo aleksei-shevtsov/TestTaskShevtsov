@@ -1,8 +1,8 @@
 export interface IPolicy {
-  id: number,
-  num: string,
-  amount: number,
-  userType: string,
-  clientId: number,
-  description: string
+  id: any,
+  num: any,
+  amount: any,
+  userType: any,
+  clientId: any,
+  description: any
 }

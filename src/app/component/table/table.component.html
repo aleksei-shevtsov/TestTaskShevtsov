@@ -1,9 +1,13 @@
 
+
+
 <table>
   <tr>
     <th *ngFor="let property of properties">{{property}}</th>
   </tr>
-  <tr *ngFor="let policy of data ">
+  <tr *ngFor="let policy of data">
     <td *ngFor="let property of properties">{{policy[property]}}</td>
   </tr>
 </table>
+
+<app-pagination [policies]="setData" (change)="setData($event)"></app-pagination>

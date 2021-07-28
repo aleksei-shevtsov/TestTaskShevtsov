@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { IPolicy } from 'src/app/interface/Ipolicy';
+import { PolicyService } from 'src/app/service/policy.service';
+import { GetPageDataService } from 'src/app/service/get-page-data.service';
+
+// import { map } from 'rxjs/operators'; 
+// import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-pagination',
@@ -7,9 +13,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
 
-  constructor() { }
+  @Output() change = new EventEmitter<any>();
+  @Input() policies: any
+
+  constructor(private policyService: PolicyService, private getPageDataService: GetPageDataService) { }
 
   ngOnInit(): void {
   }
+
+  prev() {
+    this.getPageDataService.prev().subscribe(x => this.change.emit(x));
+    console.log('prev page')
+  }
+ 
+  forward() {
+    this.getPageDataService.forward().subscribe(x => this.change.emit(x));
+    console.log('next page')
+  }
+
 
 }

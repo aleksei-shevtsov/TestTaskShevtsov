@@ -10,6 +10,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';  
 import { DataService } from './service/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GetPageDataService } from './service/get-page-data.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     InMemoryWebApiModule.forRoot(DataService),
     HttpClientModule
   ],
-  providers: [],
+  providers:[GetPageDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

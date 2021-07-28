@@ -1,0 +1,10 @@
+.pagination-area{
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+  position: relative;
+  margin: 2em auto;
+}
+
+.pagination-element{
+}
