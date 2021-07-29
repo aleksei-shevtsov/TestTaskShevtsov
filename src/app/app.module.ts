@@ -7,7 +7,7 @@ import { TableWithFilterComponent } from './component/table-with-filter/table-wi
 import { TableComponent } from './component/table/table.component';
 import { FilterComponent } from './component/filter/filter.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';  
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './service/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GetPageDataService } from './service/get-page-data.service';
@@ -33,7 +33,7 @@ import { PaginationPipe } from './component/pagination/pagination.pipe';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers:[GetPageDataService],
+  providers: [GetPageDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

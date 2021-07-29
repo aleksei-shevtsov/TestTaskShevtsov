@@ -17,25 +17,23 @@ export class GetPageDataService  {
   constructor(private policyService: PolicyService) { }
 
 
-  getPageData(data: any): Observable<{ [key: string]: any } []>{
+  getPageData(data: any): Observable<{ [key: string]: any } []> {
     this.policies = data;
-    return of(this.policies.slice((this.pageNumber - 1) * this.pageSize, this.pageNumber * this.pageSize))
+    return of(this.policies.slice((this.pageNumber - 1) * this.pageSize, this.pageNumber * this.pageSize));
   }
 
   prev() {
-   if(this.pageNumber > 1) {
+   if (this.pageNumber > 1) {
      this.pageNumber = this.pageNumber - 1;
-    //  this.getPageData().subscribe(res => console.log(res))
    }
-   return this.getPageData(this.policies)
+   return this.getPageData(this.policies);
   }
 
   forward() {
     const pageCount = this.policies.length / this.pageSize;
-    if(this.pageNumber < pageCount) {
+    if (this.pageNumber < pageCount) {
       this.pageNumber = this.pageNumber + 1;
-      // this.getPageData().subscribe(res => console.log(res))
     }
-   return this.getPageData(this.policies)
+   return this.getPageData(this.policies);
   }
 }

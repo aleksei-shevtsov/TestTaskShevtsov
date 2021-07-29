@@ -14,20 +14,29 @@
 <!--  -->
 
 <table>
+  <label>
+    <input type="checkbox" (change)="id_checkBoxChanged($event)" formControlName="idChecker" checked> ID
+  </label>  <label>
+    <input type="checkbox" (change)="id_checkBoxChanged($event)"> Ins. Number
+  </label>  <label>
+    <input type="checkbox" (change)="id_checkBoxChanged($event)"> Amount
+  </label>
+  <!-- (change)="checkBoxChanged($event)" -->
+
   <tr>
-    <th *ngFor="let property of properties">{{property}}</th>
+    <th *ngFor="let property of headersValue">{{property}}</th>
   </tr>
-  <!-- <tr *ngFor="let policy of data ">
-    <td *ngFor="let property of properties | filterdata: queryString : queryString">{{policy[property]}}</td>
-  </tr> -->
   <tr *ngFor="let policy of policies | filterdata:  queryString : propertyValueForSearch | paginationPipe">
+    <td *ngFor="let property of properties ">{{policy[property]}}</td>
+  </tr>
+  <!-- <tr *ngFor="let policy of policies | filterdata:  queryString : propertyValueForSearch | paginationPipe">
     <td>{{policy.id}}</td>
     <td>{{policy.num}}</td>
     <td>{{policy.amount}}</td>
     <td>{{policy.userType}}</td>
     <td>{{policy.clientId}}</td>
     <td>{{policy.description}}</td>
-  </tr>
+  </tr> -->
   <!-- <tr *ngFor="let policy of data">
     <div *ngIf="!policy.propertyValueForSearch">ниче нет</div>
   </tr> -->

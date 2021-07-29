@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api'
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,9 @@ export class DataService implements InMemoryDbService {
 
   constructor() { }
 
-  createDb(){
+  createDb() {
 
-    let  policies =  [
+    const  policies =  [
      {  id:  1,  num:  'Ins_1', amount: 1000, userType: 'user', clientId: 1, description: 'Insurance policy number PN1' },
      {  id:  2,  num:  'Ins_2', amount: 2000, userType: 'user', clientId: 2, description: 'Insurance policy number PN2' },
      {  id:  3,  num:  'Ins_3', amount: 3000, userType: 'user', clientId: 3, description: 'Insurance policy number PN3' },
@@ -37,9 +37,9 @@ export class DataService implements InMemoryDbService {
      {  id:  24,  num:  'Ins_24', amount: 24000, userType: 'user', clientId: 24, description: 'Insurance policy number PN24' },
      {  id:  25,  num:  'Ins_25', amount: 25000, userType: 'user', clientId: 25, description: 'Insurance policy number PN25' }
     ];
- 
+
     return {policies};
- 
-   }
+
+  }
 
 }
