@@ -16,9 +16,13 @@ export class TableComponent implements OnInit {
     public policies: any;
     public data: any;
     public properties: any;
+    public queryString: any;
+
     // { [key: string]: any; } = []
   
-    constructor(private policyService: PolicyService, private getPageDataService: GetPageDataService) { };
+    constructor(private policyService: PolicyService, private getPageDataService: GetPageDataService) { 
+      this.queryString = ''
+     };
 
   
     ngOnInit() {
@@ -27,7 +31,7 @@ export class TableComponent implements OnInit {
           mergeMap(res => this.getPageDataService.getPageData(res).pipe(
             map(data => {
               this.policies = data;
-              this.data =data;
+              this.data = data;
               this.properties = Object.getOwnPropertyNames(data[0])
               return data
             })

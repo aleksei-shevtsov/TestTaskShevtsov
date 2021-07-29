@@ -1,13 +1,10 @@
-
-
-
+<input type="text" placeholder="type here..." [(ngModel)]="queryString">
 <table>
   <tr>
     <th *ngFor="let property of properties">{{property}}</th>
   </tr>
   <tr *ngFor="let policy of data">
-    <td *ngFor="let property of properties">{{policy[property]}}</td>
+    <td *ngFor="let property of properties | filterdata: queryString : 'num' ; let i = index ">{{policy[property]}}</td>
   </tr>
 </table>
-
-<app-pagination [policies]="setData" (change)="setData($event)"></app-pagination>
+<app-pagination (change)="setData($event)"></app-pagination>

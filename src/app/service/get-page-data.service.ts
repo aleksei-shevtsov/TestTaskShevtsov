@@ -24,7 +24,7 @@ export class GetPageDataService  {
 
   prev() {
    if(this.pageNumber > 1) {
-     this.pageNumber= this.pageNumber - 1;
+     this.pageNumber = this.pageNumber - 1;
     //  this.getPageData().subscribe(res => console.log(res))
    }
    return this.getPageData(this.policies)
@@ -33,7 +33,7 @@ export class GetPageDataService  {
   forward() {
     const pageCount = this.policies.length / this.pageSize;
     if(this.pageNumber < pageCount) {
-      this.pageNumber= this.pageNumber + 1;
+      this.pageNumber = this.pageNumber + 1;
       // this.getPageData().subscribe(res => console.log(res))
     }
    return this.getPageData(this.policies)

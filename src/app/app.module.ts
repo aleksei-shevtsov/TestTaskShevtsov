@@ -11,6 +11,8 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './service/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GetPageDataService } from './service/get-page-data.service';
+import { SearchPipe } from './component/filter/search.pipe';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { GetPageDataService } from './service/get-page-data.service';
     TableWithFilterComponent,
     TableComponent,
     FilterComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     InMemoryWebApiModule.forRoot(DataService),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers:[GetPageDataService],
   bootstrap: [AppComponent]

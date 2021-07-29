@@ -14,7 +14,6 @@ import { GetPageDataService } from 'src/app/service/get-page-data.service';
 export class PaginationComponent implements OnInit {
 
   @Output() change = new EventEmitter<any>();
-  @Input() policies: any
 
   constructor(private policyService: PolicyService, private getPageDataService: GetPageDataService) { }
 
