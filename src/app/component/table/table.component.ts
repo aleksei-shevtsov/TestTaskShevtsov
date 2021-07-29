@@ -4,6 +4,7 @@ import { IPolicy } from 'src/app/interface/Ipolicy';
 import { GetPageDataService } from 'src/app/service/get-page-data.service';
 import { Observable, of } from 'rxjs';
 import { first, mergeMap, tap, map } from "rxjs/operators";
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-table',
@@ -13,6 +14,7 @@ import { first, mergeMap, tap, map } from "rxjs/operators";
 })
 export class TableComponent implements OnInit {
 
+    public propertyValueForSearch = '';
     public policies: any;
     public data: any;
     public properties: any;
@@ -20,29 +22,48 @@ export class TableComponent implements OnInit {
 
     // { [key: string]: any; } = []
   
-    constructor(private policyService: PolicyService, private getPageDataService: GetPageDataService) { 
+    constructor(private policyService: PolicyService, private getPageDataService: GetPageDataService, public fb: FormBuilder) { 
       this.queryString = ''
      };
 
+    
   
     ngOnInit() {
         this.policyService.getPolicies().pipe(
           tap(console.log),
-          mergeMap(res => this.getPageDataService.getPageData(res).pipe(
+          mergeMap(res => { 
+            this.policies = res;
+            return this.getPageDataService.getPageData(res).pipe(
             map(data => {
-              this.policies = data;
-              this.data = data;
+              // this.data = data;
               this.properties = Object.getOwnPropertyNames(data[0])
               return data
             })
-          )),
+          )})
         ).subscribe()
     }
+
+    searchForm = this.fb.group({
+      propertiesOfSearch: ['', [Validators.required]]
+    })
   
     setData(event: any) {
       this.data = event;
       console.log('event', event)
     }
+
+    getPropertiesForSearch() {
+      return this.searchForm.get('propertiesOfSearch');
+    }
+
+    changePropertyInSearch(e: any) {
+      this.searchForm.controls.propertiesOfSearch.setValue(e.target.value, {
+        onlySelf: true
+      })
+      this.propertyValueForSearch = e.target.value
+      console.log('this.propertyValueForSearch', this.propertyValueForSearch)
+    }
+
       // this.policyService.getPolicies().subscribe((data : any )=> {
       //   this.policies = data
       //   console.log('ngOnInit data ',data);

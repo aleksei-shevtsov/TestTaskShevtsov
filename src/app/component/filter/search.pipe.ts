@@ -10,7 +10,13 @@ export class SearchPipe implements PipeTransform {
     if (!properties) return [];
     if (!inputValue) return  properties;
     if (inputValue == '' || inputValue == null) return [];
-    return properties.filter(e => e.toLowerCase().indexOf(inputValue) > -1 );
+    return properties.filter(e => {
+      if (typeof e[label] === 'string') {
+        return e[label].toLowerCase().indexOf(inputValue.toLowerCase()) > -1 
+      }else {
+        return e[label].toString().indexOf(inputValue) > -1 
+      }
+      });
   }
 
   // transform(policies: any, searchText: string): string {

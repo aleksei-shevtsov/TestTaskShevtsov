@@ -12,7 +12,8 @@ import { DataService } from './service/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GetPageDataService } from './service/get-page-data.service';
 import { SearchPipe } from './component/filter/search.pipe';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginationPipe } from './component/pagination/pagination.pipe';
 
 @NgModule({
   declarations: [
@@ -21,14 +22,16 @@ import { FormsModule } from '@angular/forms';
     TableComponent,
     FilterComponent,
     PaginationComponent,
-    SearchPipe
+    SearchPipe,
+    PaginationPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     InMemoryWebApiModule.forRoot(DataService),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[GetPageDataService],
   bootstrap: [AppComponent]

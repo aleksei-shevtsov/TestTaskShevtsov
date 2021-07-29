@@ -1,10 +1,35 @@
-<input type="text" placeholder="type here..." [(ngModel)]="queryString">
+<!-- DropDown -->
+<form [formGroup]="searchForm">
+  <p style="display:inline-block; font-size: 13px; font-family:Verdana, Geneva, Tahoma, sans-serif;">Search by -  </p>
+  <select style="display:inline-block; margin-left: 5px;" class="custom-select" formControlName="propertiesOfSearch" (change)="changePropertyInSearch($event)">
+    <option value="" disabled>Choose Property</option>
+    <option *ngFor="let property of properties">{{property}}</option>
+  </select>
+  <div *ngIf="properties.errors?.required" class="alert alert-danger mt-2">
+    Please choose some property
+  </div>
+</form>
+<input type="text" placeholder="" [(ngModel)]="queryString">
+
+<!--  -->
+
 <table>
   <tr>
     <th *ngFor="let property of properties">{{property}}</th>
   </tr>
-  <tr *ngFor="let policy of data">
-    <td *ngFor="let property of properties | filterdata: queryString : 'num' ; let i = index ">{{policy[property]}}</td>
+  <!-- <tr *ngFor="let policy of data ">
+    <td *ngFor="let property of properties | filterdata: queryString : queryString">{{policy[property]}}</td>
+  </tr> -->
+  <tr *ngFor="let policy of policies | filterdata:  queryString : propertyValueForSearch | paginationPipe">
+    <td>{{policy.id}}</td>
+    <td>{{policy.num}}</td>
+    <td>{{policy.amount}}</td>
+    <td>{{policy.userType}}</td>
+    <td>{{policy.clientId}}</td>
+    <td>{{policy.description}}</td>
   </tr>
+  <!-- <tr *ngFor="let policy of data">
+    <div *ngIf="!policy.propertyValueForSearch">ниче нет</div>
+  </tr> -->
 </table>
 <app-pagination (change)="setData($event)"></app-pagination>
